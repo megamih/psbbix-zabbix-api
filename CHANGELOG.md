@@ -1,4 +1,8 @@
 # Changelog
+##### [0.2.2] - 2021-09-30
+##### Added
+ - switch parameters added to cmdlet Import-ZabbixConfig https://www.zabbix.com/documentation/3.2/manual/api/reference/configuration/import
+
 ##### [0.2.1] - 2019-09-22
 ##### Fixed
  - Minor fixes
