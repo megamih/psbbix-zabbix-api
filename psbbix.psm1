@@ -2860,6 +2860,42 @@ function Import-ZabbixConfiguration {
 		[Parameter(Mandatory=$False,ValueFromPipelineByPropertyName=$false)][string]$source,
 		# Format XML or JSON
 		[string]$Format="xml",
+		# Defaults to Import template selection
+		[Switch]$applicationsCreate = $true,
+		[Switch]$applicationsUpdate = $false,
+		[Switch]$applicationsDelete = $false,
+		[Switch]$discoveryRulesCreate = $true,
+		[Switch]$discoveryRulesUpdate = $true,
+		[Switch]$discoveryRulesDelete = $false,
+		[Switch]$graphsCreate = $true,
+		[Switch]$graphsUpdate = $true,
+		[Switch]$graphsDelete = $false,
+		[Switch]$groupsCreate = $true,
+		[Switch]$hostsCreate = $false,
+		[Switch]$hostsUpdate = $false,
+		[Switch]$httptestsCreate = $true,
+		[Switch]$httptestsUpdate = $true,
+		[Switch]$httptestsDelete = $false,
+		[Switch]$imagesCreate = $false,
+		[Switch]$imagesUpdate = $false,
+		[Switch]$itemsCreate = $true,
+		[Switch]$itemsUpdate = $true,
+		[Switch]$itemsDelete = $false,
+		[Switch]$mapsCreate = $false,
+		[Switch]$mapsUpdate = $false,
+		[Switch]$screensCreate = $false,
+		[Switch]$screensUpdate = $false,
+		[Switch]$templateLinkageCreate = $true,
+		[Switch]$templatesCreate = $true,
+		[Switch]$templatesUpdate = $true,
+		[Switch]$templateScreensCreate = $true,
+		[Switch]$templateScreensUpdate = $true,
+		[Switch]$templateScreensDelete = $false,
+		[Switch]$triggersCreate = $true,
+		[Switch]$triggersUpdate = $true,
+		[Switch]$triggersDelete = $false,
+		[Switch]$valueMapsCreate = $true,
+		[Switch]$valueMapsUpdate = $false,
 		[Parameter(Mandatory=$False,ValueFromPipelineByPropertyName=$true)][string]$jsonrpc=($global:zabSessionParams.jsonrpc),
         [Parameter(Mandatory=$False,ValueFromPipelineByPropertyName=$true)][string]$session=($global:zabSessionParams.session),
         [Parameter(Mandatory=$False,ValueFromPipelineByPropertyName=$true)][string]$id=($global:zabSessionParams.id),
@@ -2892,37 +2928,66 @@ function Import-ZabbixConfiguration {
 					createMissing = $true
 				}
 				templateLinkage = @{
-					createMissing = $true
+					createMissing = $templateLinkageCreate
 				}
 				applications = @{
-					createMissing = $true
+					createMissing = $applicationsCreate
+					updateExisting = $applicationsUpdate
+					deleteMissing = $applicationsDelete
 				}
 				hosts = @{
-					createMissing = $true
-					updateExisting = $true
+					createMissing = $hostsCreate
+					updateExisting = $hostsUpdate
 				}
 				items = @{
-					createMissing = $true
-					updateExisting = $true
+					createMissing = $itemsCreate
+					updateExisting = $itemsUpdate
+					deleteMissing = $itemsDelete
+				}
+				images = @{
+					createMissing = $imagesCreate
+					updateExisting = $imagesUpdate
+				}
+				templates = @{
+					createMissing = $templatesCreate
+					updateExisting = $templatesUpdate
+				}
+				templateScreens = @{
+					createMissing = $templateScreensCreate
+					updateExisting = $templateScreensUpdate
+					deleteMissing = $templateScreensDelete
+				}
+				screens = @{
+					createMissing = $screensCreate
+					updateExisting = $screensUpdate
+				}
+				maps = @{
+					createMissing = $mapsCreate
+					updateExisting = $mapsUpdate
 				}
 				discoveryRules = @{
-					createMissing = $true
-					updateExisting = $true
+					createMissing = $discoveryRulesCreate
+					updateExisting = $discoveryRulesUpdate
+					deleteMissing = $discoveryRulesDelete
 				}
 				triggers = @{
-					createMissing = $true
-					updateExisting = $true
+					createMissing = $triggersCreate
+					updateExisting = $triggersUpdate
+					deleteMissing = $triggersDelete
 				}
 				graphs = @{
-					createMissing = $true
-					updateExisting = $true
+					createMissing = $graphsCreate
+					updateExisting = $graphsUpdate
+					deleteMissing = $graphsDelete
 				}
 				httptests = @{
-					createMissing = $true
-					updateExisting = $true
+					createMissing = $httptestsCreate
+					updateExisting = $httptestsUpdate
+					deleteMissing = $httptestsDelete
 				}
 				valueMaps = @{
-					createMissing = $true
+					createMissing = $valueMapsCreate
+					updateExisting = $valueMapsUpdate
 				}
 			}
 			source = $xmlFile
